@@ -1,0 +1,51 @@
+{
+  "name": "swagger.ts",
+  "version": "0.0.1",
+  "bin": {
+    "swagger2ts": "dist/index.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/koa": "^2.11.3",
+    "@types/koa-router": "^7.4.0",
+    "@types/koa__router": "^8.0.2",
+    "@types/node": "^13.13.4",
+    "@types/node-fetch": "^2.5.7",
+    "@types/yaml": "^1.9.7",
+    "@types/yargs": "^15.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "lint-staged": "^10.2.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "rm -rf dist && tsc",
+    "pub": "yarn build && yarn publish",
+    "start": "ts-node src",
+    "watch": "yarn nodemon --watch src -e ts,js,json --exec \"yarn start\"",
+    "lint": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint",
+      "yarn prettier --parser typescript --write src/*.ts"
+    ],
+    "*.json": [
+      "yarn prettier"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test && yarn lint"
+    }
+  }
+}

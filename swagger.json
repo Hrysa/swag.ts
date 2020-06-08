@@ -1,0 +1,5246 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "swagger",
+    "version": "1.0",
+    "title": "Spring Boot中使用Swagger2",
+    "termsOfService": "https://www.baidu.com"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    { "name": "故障码管理", "description": "SPN Controller" },
+    { "name": "车具管理", "description": "Vehicle Component Controller" },
+    { "name": "test-controller", "description": "Test Controller" },
+    { "name": "产品模块", "description": "Product Controller" },
+    { "name": "终端管理", "description": "Terminal Controller" },
+    { "name": "车辆管理", "description": "Vehicle Controller" },
+    { "name": "维修员管理", "description": "Mms Controller" },
+    {
+      "name": "车具类型管理",
+      "description": "Vehicle Component Type Controller"
+    },
+    { "name": "车辆类型管理", "description": "Vehicle Type Controller" },
+    { "name": "用户模块", "description": "Ums Controller" },
+    { "name": "结算价目模块", "description": "Settlement Price Controller" },
+    { "name": "车辆故障管理", "description": "Vehicle Fault Controller" },
+    { "name": "经销商模块", "description": "Dealer Controller" },
+    { "name": "工时模块", "description": "Work Hours Controller" },
+    { "name": "登录模块", "description": "Login Controller" },
+    { "name": "物料清单模块", "description": "Materia Controller" },
+    { "name": "权限模块", "description": "Pms 2 Controller" },
+    { "name": "角色模块", "description": "Rms Controller" }
+  ],
+  "paths": {
+    "/SPN/create": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "创建故障码",
+        "operationId": "postUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/SPN", "originalRef": "SPN" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/delete": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "删除故障码",
+        "operationId": "deleteUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/deleteBatch": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "批量删除故障码",
+        "operationId": "deleteBatchUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/export": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "导出",
+        "operationId": "exportsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SPNQueryPageRequestBody",
+              "originalRef": "SPNQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string", "format": "byte" },
+            "schema": { "type": "string", "format": "byte" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/import": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "导入",
+        "operationId": "importsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/queryPage": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "获取故障码列表",
+        "operationId": "getListUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SPNQueryPageRequestBody",
+              "originalRef": "SPNQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«SPN»»",
+              "originalRef": "Response«IPage«SPN»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«SPN»»",
+              "originalRef": "Response«IPage«SPN»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/SPN/update": {
+      "post": {
+        "tags": ["故障码管理"],
+        "summary": "更新故障码",
+        "operationId": "updateUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/SPN", "originalRef": "SPN" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/add": {
+      "post": {
+        "tags": ["test-controller"],
+        "summary": "添加",
+        "description": "添加信息",
+        "operationId": "addUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string" },
+            "schema": { "type": "string" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/create": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "create",
+        "description": "创建经销商",
+        "operationId": "createUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dealer",
+            "description": "dealer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DealerAddModel",
+              "originalRef": "DealerAddModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/deleteBatch": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "deleteBatch",
+        "description": "批量删除经销商",
+        "operationId": "deleteBatchUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/exportDealer": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "exportDealer",
+        "description": "导出",
+        "operationId": "exportDealerUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dealer",
+            "description": "dealer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DealerQueryModel",
+              "originalRef": "DealerQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/importDealer": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "importDealer",
+        "description": "导入",
+        "operationId": "importDealerUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/queryDetail": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "queryDetail",
+        "description": "查询单个详情",
+        "operationId": "queryDetailUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Dealer»",
+              "originalRef": "Response«Dealer»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Dealer»",
+              "originalRef": "Response«Dealer»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/queryPage": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "queryPage",
+        "description": "分页查询",
+        "operationId": "queryPageUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dealer",
+            "description": "dealer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DealerQueryModel",
+              "originalRef": "DealerQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«Dealer»»",
+              "originalRef": "Response«IPage«Dealer»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«Dealer»»",
+              "originalRef": "Response«IPage«Dealer»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/dealer/update": {
+      "post": {
+        "tags": ["经销商模块"],
+        "summary": "update",
+        "description": "创建经销商",
+        "operationId": "updateUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dealer",
+            "description": "dealer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DealerUpdateModel",
+              "originalRef": "DealerUpdateModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/get": {
+      "get": {
+        "tags": ["test-controller"],
+        "summary": "获取",
+        "description": "获取信息",
+        "operationId": "getUsingGET",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "description": "sex",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string" },
+            "schema": { "type": "string" }
+          },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/login/captcha/email": {
+      "post": {
+        "tags": ["登录模块"],
+        "summary": "邮箱验证码",
+        "operationId": "emailCaptchaUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmailBody",
+              "originalRef": "EmailBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/login/captcha/sms": {
+      "post": {
+        "tags": ["登录模块"],
+        "summary": "短信验证码",
+        "operationId": "smsCaptchaUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsBody",
+              "originalRef": "SmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/login/login": {
+      "post": {
+        "tags": ["登录模块"],
+        "summary": "登录",
+        "description": "账号密码登录",
+        "operationId": "loginUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginBody",
+              "originalRef": "LoginBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/login/password/email": {
+      "post": {
+        "tags": ["登录模块"],
+        "summary": "短信验证码设置新密码",
+        "operationId": "newPasswordByEmailUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmailPasswordBody",
+              "originalRef": "EmailPasswordBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/login/password/sms": {
+      "post": {
+        "tags": ["登录模块"],
+        "summary": "短信验证码设置新密码",
+        "operationId": "newPasswordBySmsUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SmsPasswordBody",
+              "originalRef": "SmsPasswordBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/create": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "create",
+        "description": "创建物料清单",
+        "operationId": "createUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "materia",
+            "description": "materia",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MateriaAddModel",
+              "originalRef": "MateriaAddModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/deleteBatch": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "deleteBatch",
+        "description": "批量删除物料清单",
+        "operationId": "deleteMateriaUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/exportMateria": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "exportMateria",
+        "description": "导出",
+        "operationId": "exportMateriaUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "toPage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "materialCode",
+            "in": "query",
+            "description": "物料编号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "产品名称",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "spec",
+            "in": "query",
+            "description": "规格型号",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/importMateria": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "importDealer",
+        "description": "导入",
+        "operationId": "importMateriaUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/queryDetail": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "queryDetail",
+        "description": "查询单个详情",
+        "operationId": "queryDetailUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Materia»",
+              "originalRef": "Response«Materia»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Materia»",
+              "originalRef": "Response«Materia»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/queryPage": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "queryPage",
+        "description": "分页查询",
+        "operationId": "queryPageUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "materia",
+            "description": "materia",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MateriaQueryModel",
+              "originalRef": "MateriaQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«Materia»»",
+              "originalRef": "Response«IPage«Materia»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«Materia»»",
+              "originalRef": "Response«IPage«Materia»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/materia/update": {
+      "post": {
+        "tags": ["物料清单模块"],
+        "summary": "update",
+        "description": "修改物料清单",
+        "operationId": "updateUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "materia",
+            "description": "materia",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MateriaUpdateModel",
+              "originalRef": "MateriaUpdateModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/mms/addMaintenanceMan": {
+      "post": {
+        "tags": ["维修员管理"],
+        "summary": "新增维修员",
+        "operationId": "addUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MmsBody",
+              "originalRef": "MmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/mms/deleteMaintenanceMen": {
+      "post": {
+        "tags": ["维修员管理"],
+        "summary": "删除维修员",
+        "operationId": "deleteUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBody",
+              "originalRef": "DeleteBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/mms/editMaintenanceMan": {
+      "post": {
+        "tags": ["维修员管理"],
+        "summary": "编辑维修员",
+        "operationId": "editUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MmsBody",
+              "originalRef": "MmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/mms/getMaintenanceMan": {
+      "post": {
+        "tags": ["维修员管理"],
+        "summary": "获取维修员详情",
+        "operationId": "getMaintenanceManUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetailBody",
+              "originalRef": "DetailBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/mms/getMaintenanceMen": {
+      "post": {
+        "tags": ["维修员管理"],
+        "summary": "获取维修员列表",
+        "operationId": "getMaintenanceMenUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MmsSearchBody",
+              "originalRef": "MmsSearchBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/pms/resources/getPermissions": {
+      "post": {
+        "tags": ["权限模块"],
+        "summary": "获取权限数据",
+        "operationId": "getPermissionsFromJsonUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/bindProductDealer": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "bindProductDealer",
+        "description": "绑定经销商",
+        "operationId": "bindProductDealerUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/bindProductTem": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "bindProductTem",
+        "description": "绑定终端",
+        "operationId": "bindProductTemUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/create": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "create",
+        "description": "创建产品",
+        "operationId": "createUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "product",
+            "description": "product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductAddModel",
+              "originalRef": "ProductAddModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/deleteProductBatch": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "deleteBatch",
+        "description": "批量删除产品",
+        "operationId": "deleteProductUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/exportProduct": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "exportProduct",
+        "description": "导出",
+        "operationId": "exportProductUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "product",
+            "description": "product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductQueryModel",
+              "originalRef": "ProductQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/importProduct": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "importProduct",
+        "description": "导入",
+        "operationId": "importProductUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/queryDetail": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "queryDetail",
+        "description": "查询单个详情",
+        "operationId": "queryDetailUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Materia»",
+              "originalRef": "Response«Materia»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Materia»",
+              "originalRef": "Response«Materia»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/queryPage": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "queryPage",
+        "description": "分页查询",
+        "operationId": "queryPageUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "product",
+            "description": "product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductQueryModel",
+              "originalRef": "ProductQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«Materia»»",
+              "originalRef": "Response«IPage«Materia»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«Materia»»",
+              "originalRef": "Response«IPage«Materia»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/update": {
+      "post": {
+        "tags": ["产品模块"],
+        "summary": "update",
+        "description": "修改产品",
+        "operationId": "updateDealerUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "product",
+            "description": "product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductUpdateModel",
+              "originalRef": "ProductUpdateModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/rms/addRole": {
+      "post": {
+        "tags": ["角色模块"],
+        "summary": "新增角色",
+        "operationId": "addRoleUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RmsBody",
+              "originalRef": "RmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/rms/delRoles": {
+      "post": {
+        "tags": ["角色模块"],
+        "summary": "删除角色",
+        "operationId": "delRolesUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBody",
+              "originalRef": "DeleteBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/rms/editRole": {
+      "post": {
+        "tags": ["角色模块"],
+        "summary": "编辑角色",
+        "operationId": "editRoleUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RmsBody",
+              "originalRef": "RmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/rms/getRole": {
+      "post": {
+        "tags": ["角色模块"],
+        "summary": "获取角色详情",
+        "operationId": "getRoleUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetailBody",
+              "originalRef": "DetailBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/rms/getRoles": {
+      "post": {
+        "tags": ["角色模块"],
+        "summary": "获取角色列表",
+        "operationId": "getRolesUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RmsSearchBody",
+              "originalRef": "RmsSearchBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/create": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "create",
+        "description": "创建结算价目",
+        "operationId": "createUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "settlementPrice",
+            "description": "settlementPrice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SettlementPriceAddModel",
+              "originalRef": "SettlementPriceAddModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«string»",
+              "originalRef": "Response«string»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/deleteBatch": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "deleteBatch",
+        "description": "批量删除结算价目",
+        "operationId": "deleteBatchUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/exportSettlementPrice": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "exportSettlementPrice",
+        "description": "导出",
+        "operationId": "exportSettlementPriceUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "settlementPrice",
+            "description": "settlementPrice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SettlementPriceQueryModel",
+              "originalRef": "SettlementPriceQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/importSettlementPrice": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "importSettlementPrice",
+        "description": "导入",
+        "operationId": "importSettlementPriceUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/queryDetail": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "queryDetail",
+        "description": "查询单个详情",
+        "operationId": "queryDetailUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«SettlementPrice»",
+              "originalRef": "Response«SettlementPrice»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«SettlementPrice»",
+              "originalRef": "Response«SettlementPrice»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/queryPage": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "queryPage",
+        "description": "分页查询",
+        "operationId": "queryPageUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "settlementPrice",
+            "description": "settlementPrice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SettlementPriceQueryModel",
+              "originalRef": "SettlementPriceQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«SettlementPrice»»",
+              "originalRef": "Response«IPage«SettlementPrice»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«SettlementPrice»»",
+              "originalRef": "Response«IPage«SettlementPrice»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/settlementPrice/update": {
+      "post": {
+        "tags": ["结算价目模块"],
+        "summary": "update",
+        "description": "修改结算价目",
+        "operationId": "updateUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "settlementPrice",
+            "description": "settlementPrice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SettlementPriceUpdateModel",
+              "originalRef": "SettlementPriceUpdateModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/create": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "创建终端",
+        "operationId": "postUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Terminal",
+              "originalRef": "Terminal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/delete": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "删除终端",
+        "operationId": "deleteUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "no",
+            "in": "query",
+            "description": "no",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/deleteBatch": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "批量删除终端",
+        "operationId": "deleteBatchUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "no",
+            "in": "query",
+            "description": "no",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/export": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "导出",
+        "operationId": "exportsUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TerminalQueryPageRequestBody",
+              "originalRef": "TerminalQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string", "format": "byte" },
+            "schema": { "type": "string", "format": "byte" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/import": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "导入",
+        "operationId": "importsUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/queryPage": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "获取终端",
+        "operationId": "getUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TerminalQueryPageRequestBody",
+              "originalRef": "TerminalQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«Terminal»»",
+              "originalRef": "Response«IPage«Terminal»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«Terminal»»",
+              "originalRef": "Response«IPage«Terminal»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/terminal/update": {
+      "post": {
+        "tags": ["终端管理"],
+        "summary": "更新终端",
+        "operationId": "putUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Terminal",
+              "originalRef": "Terminal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/test": {
+      "get": {
+        "tags": ["test-controller"],
+        "summary": "test",
+        "operationId": "testUsingGET",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string" },
+            "schema": { "type": "string" }
+          },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/ums/addUser": {
+      "post": {
+        "tags": ["用户模块"],
+        "summary": "新增用户",
+        "operationId": "addUserUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UmsBody",
+              "originalRef": "UmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/ums/delUsers": {
+      "post": {
+        "tags": ["用户模块"],
+        "summary": "删除用户",
+        "operationId": "delUsersUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBody",
+              "originalRef": "DeleteBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/ums/editUser": {
+      "post": {
+        "tags": ["用户模块"],
+        "summary": "编辑用户",
+        "operationId": "editRoleUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UmsBody",
+              "originalRef": "UmsBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/ums/getUser": {
+      "post": {
+        "tags": ["用户模块"],
+        "summary": "获取用户详情",
+        "operationId": "getUserUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DetailBody",
+              "originalRef": "DetailBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/ums/getUsers": {
+      "post": {
+        "tags": ["用户模块"],
+        "summary": "获取用户列表",
+        "operationId": "getUsersUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UmsSearchBody",
+              "originalRef": "UmsSearchBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "object" },
+            "schema": { "type": "object" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/create": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "创建车具",
+        "operationId": "postUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponent",
+              "originalRef": "VehicleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/delete": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "删除车具",
+        "operationId": "deleteUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/deleteBatch": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "批量删除车具",
+        "operationId": "deleteBatchUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/export": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "导出",
+        "operationId": "exportsUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponentQueryPageRequestBody",
+              "originalRef": "VehicleComponentQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string", "format": "byte" },
+            "schema": { "type": "string", "format": "byte" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/import": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "导入",
+        "operationId": "importsUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/queryPage": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "获取车具",
+        "operationId": "getUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponentQueryPageRequestBody",
+              "originalRef": "VehicleComponentQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«VehicleComponent»»",
+              "originalRef": "Response«IPage«VehicleComponent»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«VehicleComponent»»",
+              "originalRef": "Response«IPage«VehicleComponent»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/type/create": {
+      "post": {
+        "tags": ["车具类型管理"],
+        "summary": "创建车具类型",
+        "operationId": "postUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponentType",
+              "originalRef": "VehicleComponentType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/type/delete": {
+      "post": {
+        "tags": ["车具类型管理"],
+        "summary": "删除车具类型",
+        "operationId": "deleteUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/type/deleteBatch": {
+      "post": {
+        "tags": ["车具类型管理"],
+        "summary": "批量删除车具类型",
+        "operationId": "deleteBatchUsingPOST_5",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/type/queryPage": {
+      "post": {
+        "tags": ["车具类型管理"],
+        "summary": "获取车具类型",
+        "operationId": "getUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BaseDto",
+              "originalRef": "BaseDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«VehicleComponentType»»",
+              "originalRef": "Response«IPage«VehicleComponentType»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«VehicleComponentType»»",
+              "originalRef": "Response«IPage«VehicleComponentType»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/type/update": {
+      "post": {
+        "tags": ["车具类型管理"],
+        "summary": "更新车具类型",
+        "operationId": "putUsingPOST_2",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponentType",
+              "originalRef": "VehicleComponentType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/component/update": {
+      "post": {
+        "tags": ["车具管理"],
+        "summary": "更新车具",
+        "operationId": "putUsingPOST_1",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleComponent",
+              "originalRef": "VehicleComponent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/create": {
+      "post": {
+        "tags": ["车辆管理"],
+        "summary": "创建车辆",
+        "operationId": "postUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Vehicle",
+              "originalRef": "Vehicle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/delete": {
+      "post": {
+        "tags": ["车辆管理"],
+        "summary": "删除车辆",
+        "operationId": "deleteUsingPOST_5",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "no",
+            "in": "query",
+            "description": "no",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/deleteBatch": {
+      "post": {
+        "tags": ["车辆管理"],
+        "summary": "批量删除车辆",
+        "operationId": "deleteBatchUsingPOST_6",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "no",
+            "in": "query",
+            "description": "no",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/create": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "创建车辆故障",
+        "operationId": "postUsingPOST_5",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFault",
+              "originalRef": "VehicleFault"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/delete": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "删除车辆故障",
+        "operationId": "deleteUsingPOST_6",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/deleteBatch": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "批量删除车辆故障",
+        "operationId": "deleteBatchUsingPOST_7",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/export": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "导出",
+        "operationId": "exportsUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFaultQueryPageRequestBody",
+              "originalRef": "VehicleFaultQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": { "type": "string", "format": "byte" },
+            "schema": { "type": "string", "format": "byte" }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/import": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "导入",
+        "operationId": "importsUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/queryPage": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "获取车辆故障",
+        "operationId": "getUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFaultQueryPageRequestBody",
+              "originalRef": "VehicleFaultQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«VehicleFault»»",
+              "originalRef": "Response«IPage«VehicleFault»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«VehicleFault»»",
+              "originalRef": "Response«IPage«VehicleFault»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/fault/update": {
+      "post": {
+        "tags": ["车辆故障管理"],
+        "summary": "更新车辆故障",
+        "operationId": "putUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFault",
+              "originalRef": "VehicleFault"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/queryPage": {
+      "post": {
+        "tags": ["车辆管理"],
+        "summary": "获取车辆",
+        "operationId": "getUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleQueryPageRequestBody",
+              "originalRef": "VehicleQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«Vehicle»»",
+              "originalRef": "Response«IPage«Vehicle»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«Vehicle»»",
+              "originalRef": "Response«IPage«Vehicle»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/type/create": {
+      "post": {
+        "tags": ["车辆类型管理"],
+        "summary": "创建车辆类型",
+        "operationId": "postUsingPOST_6",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleType",
+              "originalRef": "VehicleType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/type/delete": {
+      "post": {
+        "tags": ["车辆类型管理"],
+        "summary": "删除车辆类型",
+        "operationId": "deleteUsingPOST_7",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/type/deleteBatch": {
+      "post": {
+        "tags": ["车辆类型管理"],
+        "summary": "批量删除车辆类型",
+        "operationId": "deleteBatchUsingPOST_8",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/type/queryPage": {
+      "post": {
+        "tags": ["车辆类型管理"],
+        "summary": "获取车辆类型",
+        "operationId": "getUsingPOST_5",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleTypeQueryPageRequestBody",
+              "originalRef": "VehicleTypeQueryPageRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«VehicleType»»",
+              "originalRef": "Response«IPage«VehicleType»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«VehicleType»»",
+              "originalRef": "Response«IPage«VehicleType»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/type/update": {
+      "post": {
+        "tags": ["车辆类型管理"],
+        "summary": "更新车辆类型",
+        "operationId": "putUsingPOST_5",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleType",
+              "originalRef": "VehicleType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/vehicle/update": {
+      "post": {
+        "tags": ["车辆管理"],
+        "summary": "更新车辆",
+        "operationId": "putUsingPOST_3",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Vehicle",
+              "originalRef": "Vehicle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/create": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "create",
+        "description": "创建工时",
+        "operationId": "createUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "workHours",
+            "description": "workHours",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkHoursAddModel",
+              "originalRef": "WorkHoursAddModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/deleteBatch": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "deleteBatch",
+        "description": "批量删除工时",
+        "operationId": "deleteBatchUsingPOST_9",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/exportworkHours": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "exportworkHours",
+        "description": "导出",
+        "operationId": "exportworkHoursUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "workHours",
+            "description": "workHours",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkHoursQueryModel",
+              "originalRef": "WorkHoursQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/importworkHours": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "importworkHours",
+        "description": "导入",
+        "operationId": "importworkHoursUsingPOST",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "url",
+            "description": "url",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/queryDetail": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "queryDetail",
+        "description": "查询单个详情",
+        "operationId": "queryDetailUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "id",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«WorkHours»",
+              "originalRef": "Response«WorkHours»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«WorkHours»",
+              "originalRef": "Response«WorkHours»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/queryPage": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "queryPage",
+        "description": "分页查询",
+        "operationId": "queryPageUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "workHours",
+            "description": "workHours",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkHoursQueryModel",
+              "originalRef": "WorkHoursQueryModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«IPage«WorkHours»»",
+              "originalRef": "Response«IPage«WorkHours»»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«IPage«WorkHours»»",
+              "originalRef": "Response«IPage«WorkHours»»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    },
+    "/workHours/update": {
+      "post": {
+        "tags": ["工时模块"],
+        "summary": "update",
+        "description": "修改工时",
+        "operationId": "updateUsingPOST_4",
+        "consumes": ["application/json"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "workHours",
+            "description": "workHours",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WorkHoursUpdateModel",
+              "originalRef": "WorkHoursUpdateModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "responseSchema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            },
+            "schema": {
+              "$ref": "#/definitions/Response«Empty»",
+              "originalRef": "Response«Empty»"
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "BaseDto": {
+      "type": "object",
+      "properties": {
+        "pageSize": { "type": "integer", "format": "int32" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "Dealer": {
+      "type": "object",
+      "properties": {
+        "activated": { "type": "boolean" },
+        "address": { "type": "string" },
+        "addressId": { "type": "integer", "format": "int64" },
+        "areaCode": { "type": "string" },
+        "country": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "integer", "format": "int64" },
+        "dealerName": { "type": "string" },
+        "dealerNo": { "type": "string" },
+        "director": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "fstArea": { "type": "string" },
+        "id": { "type": "integer", "format": "int64" },
+        "intlAreaCode": { "type": "integer", "format": "int32" },
+        "lat": { "type": "number", "format": "double" },
+        "lon": { "type": "number", "format": "double" },
+        "mail": { "type": "string" },
+        "remark": { "type": "string" },
+        "sndArea": { "type": "string" },
+        "tel": { "type": "string" },
+        "trdArea": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "updatedBy": { "type": "integer", "format": "int64" },
+        "usccode": { "type": "string" }
+      }
+    },
+    "DealerAddModel": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string", "description": "地址" },
+        "areaCode": { "type": "string", "description": "区域代码" },
+        "country": { "type": "string", "description": "国家" },
+        "dealerName": { "type": "string", "description": "经销商名称" },
+        "director": { "type": "string", "description": "负责人" },
+        "fstArea": { "type": "string", "description": "一级区域" },
+        "intlAreaCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "国际电话区号"
+        },
+        "lat": { "type": "number", "format": "double", "description": "纬度" },
+        "lon": { "type": "number", "format": "double", "description": "经度" },
+        "mail": { "type": "string", "description": "邮箱" },
+        "remark": { "type": "string", "description": "备注" },
+        "sndArea": { "type": "string", "description": "二级区域" },
+        "tel": { "type": "string", "description": "电话" },
+        "trdArea": { "type": "string", "description": "三级区域" },
+        "usccode": { "type": "string" }
+      }
+    },
+    "DealerQueryModel": {
+      "type": "object",
+      "properties": {
+        "areaCode": { "type": "string", "description": "经销商编码" },
+        "createBeginTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "开始添加时间"
+        },
+        "createEndTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "结束添加时间"
+        },
+        "dealerCode": { "type": "string", "description": "经销商编码" },
+        "dealerName": { "type": "string", "description": "经销商名称" },
+        "director": { "type": "string", "description": "负责人" },
+        "fstArea": { "type": "string", "description": "一级区域" },
+        "intlAreaCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "国际电话区号"
+        },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "sndArea": { "type": "string", "description": "二级区域" },
+        "tel": { "type": "string", "description": "电话" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "DealerUpdateModel": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string", "description": "地址" },
+        "addressId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "地址id"
+        },
+        "areaCode": { "type": "string", "description": "区域代码" },
+        "country": { "type": "string", "description": "国家" },
+        "dealerName": { "type": "string", "description": "经销商名称" },
+        "dealerNo": { "type": "string", "description": "经销商编号" },
+        "director": { "type": "string", "description": "负责人" },
+        "fstArea": { "type": "string", "description": "一级区域" },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商id"
+        },
+        "intlAreaCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "  国际电话区号"
+        },
+        "lat": { "type": "number", "format": "double", "description": "纬度" },
+        "lon": { "type": "number", "format": "double", "description": "经度" },
+        "mail": { "type": "string", "description": "邮箱" },
+        "remark": { "type": "string", "description": "备注" },
+        "sndArea": { "type": "string", "description": "二级区域" },
+        "tel": { "type": "string", "description": "电话" },
+        "trdArea": { "type": "string", "description": "三级区域" },
+        "usccode": { "type": "string" }
+      }
+    },
+    "DeleteBody": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "删除ID" },
+        "ids": {
+          "type": "array",
+          "description": "批量删除IDS",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "DetailBody": {
+      "type": "object",
+      "properties": { "id": { "type": "string" } }
+    },
+    "EmailBody": {
+      "type": "object",
+      "properties": { "email": { "type": "string", "description": "邮箱" } }
+    },
+    "EmailPasswordBody": {
+      "type": "object",
+      "properties": {
+        "captcha": { "type": "string", "description": "验证码" },
+        "email": { "type": "string", "description": "邮箱" },
+        "newPassword": { "type": "string", "description": "新密码" },
+        "rePassword": { "type": "string", "description": "重复新密码" }
+      }
+    },
+    "Empty": { "type": "object" },
+    "IPage«Dealer»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Dealer", "originalRef": "Dealer" }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«Materia»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Materia", "originalRef": "Materia" }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«SPN»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SPN", "originalRef": "SPN" }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«SettlementPrice»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SettlementPrice",
+            "originalRef": "SettlementPrice"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«Terminal»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Terminal",
+            "originalRef": "Terminal"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«VehicleComponentType»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleComponentType",
+            "originalRef": "VehicleComponentType"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«VehicleComponent»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleComponent",
+            "originalRef": "VehicleComponent"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«VehicleFault»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleFault",
+            "originalRef": "VehicleFault"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«VehicleType»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VehicleType",
+            "originalRef": "VehicleType"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«Vehicle»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Vehicle", "originalRef": "Vehicle" }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "IPage«WorkHours»": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer", "format": "int64" },
+        "hitCount": { "type": "boolean" },
+        "pages": { "type": "integer", "format": "int64" },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkHours",
+            "originalRef": "WorkHours"
+          }
+        },
+        "searchCount": { "type": "boolean" },
+        "size": { "type": "integer", "format": "int64" },
+        "total": { "type": "integer", "format": "int64" }
+      }
+    },
+    "LoginBody": {
+      "type": "object",
+      "properties": {
+        "password": { "type": "string", "description": "密码" },
+        "username": { "type": "string", "description": "用户名" }
+      }
+    },
+    "Materia": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "format": "int64" },
+        "materialCode": { "type": "string" },
+        "productName": { "type": "string" },
+        "remark": { "type": "string" },
+        "spec": { "type": "string" }
+      }
+    },
+    "MateriaAddModel": {
+      "type": "object",
+      "properties": {
+        "materialCode": { "type": "string", "description": "物料编号" },
+        "productName": { "type": "string", "description": "产品名称" },
+        "remark": { "type": "string", "description": "备注" },
+        "spec": { "type": "string", "description": "规格型号" }
+      }
+    },
+    "MateriaQueryModel": {
+      "type": "object",
+      "properties": {
+        "materialCode": { "type": "string", "description": "物料编号" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "productName": { "type": "string", "description": "产品名称" },
+        "remark": { "type": "string", "description": "备注" },
+        "spec": { "type": "string", "description": "规格型号" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "MateriaUpdateModel": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "format": "int32", "description": "id" },
+        "materialCode": { "type": "string", "description": "物料编号" },
+        "productName": { "type": "string", "description": "产品名称" },
+        "remark": { "type": "string", "description": "备注" },
+        "spec": { "type": "string", "description": "规格型号" }
+      }
+    },
+    "MmsBody": {
+      "type": "object",
+      "properties": {
+        "addressId": { "type": "integer", "format": "int64" },
+        "avatar": { "type": "string" },
+        "dealerId": { "type": "integer", "format": "int64" },
+        "dealerName": { "type": "string" },
+        "email": { "type": "string" },
+        "gender": { "type": "string", "enum": ["Male", "Female", "Unknown"] },
+        "identity": { "type": "string" },
+        "name": { "type": "string" },
+        "organization": { "type": "string" },
+        "ownerDealerId": { "type": "integer", "format": "int64" },
+        "ownerDealerName": { "type": "string" },
+        "password": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "phonePrefix": { "type": "string" },
+        "remark": { "type": "string" },
+        "roleId": { "type": "integer", "format": "int64" },
+        "roleName": { "type": "string" },
+        "username": { "type": "string" }
+      }
+    },
+    "MmsSearchBody": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "carTypes": { "type": "array", "items": { "type": "string" } },
+        "country": { "type": "string" },
+        "dealer": { "type": "string" },
+        "firstArea": { "type": "string" },
+        "gender": { "type": "integer", "format": "int32" },
+        "identity": { "type": "string" },
+        "name": { "type": "string" },
+        "page": { "type": "integer", "format": "int32" },
+        "phone": { "type": "string" },
+        "size": { "type": "integer", "format": "int32" }
+      }
+    },
+    "ProductAddModel": {
+      "type": "object",
+      "properties": {
+        "caterpillarBandFactory": {
+          "type": "string",
+          "description": "履带厂家"
+        },
+        "caterpillarBandModel": { "type": "string", "description": "履带型号" },
+        "caterpillarBandNo": { "type": "string", "description": "履带编号" },
+        "dealerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商ID"
+        },
+        "engineFactory": { "type": "string", "description": "发动机厂家" },
+        "engineModel": { "type": "string", "description": "发动机型号" },
+        "engineNo": { "type": "string", "description": "发动机编号" },
+        "frameNum": { "type": "string", "description": "车架号" },
+        "frontBackRim": { "type": "string", "description": "前后轮胎钢圈" },
+        "frontBackTyre": { "type": "string", "description": "前后轮胎" },
+        "hstfactory": { "type": "string" },
+        "hstno": { "type": "string" },
+        "licensePlateNum": { "type": "string", "description": "车牌号" },
+        "manufacturingDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "生产日期"
+        },
+        "materialCode": { "type": "string", "description": "物料编码" },
+        "productName": { "type": "string", "description": "产品名称" },
+        "productionDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "出厂日期"
+        },
+        "purchaser": { "type": "string", "description": "购机用户姓名" },
+        "purchaserAddress": { "type": "string", "description": "购机用户地址" },
+        "purchaserCertNo": {
+          "type": "string",
+          "description": "购机用户证件号码"
+        },
+        "purchaserCountry": { "type": "string", "description": "购机用户国家" },
+        "purchaserDealer": {
+          "type": "string",
+          "description": "购机用户姓名所属经销商"
+        },
+        "purchaserFstArea": {
+          "type": "string",
+          "description": "购机用户一级区域"
+        },
+        "purchaserIntlAreaCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "购买人国际电话区号"
+        },
+        "purchaserRemark": { "type": "string", "description": "购买人备注" },
+        "purchaserSndArea": {
+          "type": "string",
+          "description": "购机用户二级区域"
+        },
+        "purchaserTel": { "type": "string", "description": "购机用户电话" },
+        "purchaserTrdArea": {
+          "type": "string",
+          "description": "购机用户三级区域"
+        },
+        "purchaserType": { "type": "string", "description": "购机用户类型" },
+        "remark": { "type": "string", "description": "备注" },
+        "sellDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "售出日期"
+        },
+        "serialNo": { "type": "string", "description": "出厂编号" },
+        "spec": { "type": "string", "description": "规格型号" },
+        "terminalNo": { "type": "string", "description": "终端编号" },
+        "transmissionFactory": {
+          "type": "string",
+          "description": "变速器厂家"
+        },
+        "transmissionNo": { "type": "string", "description": "变速器编号" },
+        "tyre": { "type": "string", "description": "轮胎" },
+        "tyreNo": { "type": "string", "description": "购机用户姓名" },
+        "validTag": { "type": "string", "description": "有效标志" },
+        "vehicleComponentHeight": {
+          "type": "string",
+          "description": "机具高低"
+        },
+        "vehicleComponentName": { "type": "string", "description": "机具名称" },
+        "vehicleComponentNo": { "type": "string", "description": "机具识别码" },
+        "vehicleComponentTypeId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "机具类型名称"
+        },
+        "vehicleComponentWidth": {
+          "type": "string",
+          "description": "机具宽度"
+        },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "机型"
+        },
+        "vehicleWidth": {
+          "type": "number",
+          "format": "double",
+          "description": "车辆宽幅"
+        }
+      }
+    },
+    "ProductQueryModel": {
+      "type": "object",
+      "properties": {
+        "country": { "type": "string", "description": "国家" },
+        "dealerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商ID"
+        },
+        "engineNo": { "type": "string", "description": "发动机编号" },
+        "isBindTerminal": {
+          "type": "string",
+          "format": "byte",
+          "description": "终端绑定状态"
+        },
+        "sellBeginDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "售出日期上限"
+        },
+        "sellEndDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "售出日期下限"
+        },
+        "serialNo": { "type": "string", "description": "出厂编号" },
+        "terminalNo": { "type": "string", "description": "终端编号" },
+        "vehicletype": { "type": "string", "description": "机型" }
+      }
+    },
+    "ProductUpdateModel": {
+      "type": "object",
+      "properties": {
+        "caterpillarBandFactory": {
+          "type": "string",
+          "description": "履带厂家"
+        },
+        "caterpillarBandModel": { "type": "string", "description": "履带型号" },
+        "caterpillarBandNo": { "type": "string", "description": "履带编号" },
+        "dealerAddress": { "type": "string", "description": "经销商地址" },
+        "dealerCountry": { "type": "string", "description": "经销商国家" },
+        "dealerDirector": { "type": "string", "description": "经销商负责人" },
+        "dealerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "经销商ID"
+        },
+        "dealerNo": { "type": "string", "description": "经销商编号" },
+        "dealerTel": { "type": "string", "description": "经销商电话" },
+        "engineFactory": { "type": "string", "description": "发动机厂家" },
+        "engineModel": { "type": "string", "description": "发动机型号" },
+        "engineNo": { "type": "string", "description": "发动机编号" },
+        "frameNum": { "type": "string", "description": "车架号" },
+        "frontBackRim": { "type": "string", "description": "前后轮胎钢圈" },
+        "frontBackTyre": { "type": "string", "description": "前后轮胎" },
+        "hstfactory": { "type": "string" },
+        "hstno": { "type": "string" },
+        "id": { "type": "integer", "format": "int64", "description": "id" },
+        "licensePlateNum": { "type": "string", "description": "车牌号" },
+        "manufacturingDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "生产日期"
+        },
+        "materialCode": { "type": "string", "description": "物料编码" },
+        "productName": { "type": "string", "description": "产品名称" },
+        "productionDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "出厂日期"
+        },
+        "purchaser": { "type": "string", "description": "购机用户姓名" },
+        "purchaserAddressId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "购买人地址信息"
+        },
+        "purchaserCertNo": {
+          "type": "string",
+          "description": "购机用户证件号码"
+        },
+        "purchaserDealer": {
+          "type": "string",
+          "description": "购机用户姓名所属经销商"
+        },
+        "purchaserIntlAreaCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "购买人国际电话区号"
+        },
+        "purchaserRemark": { "type": "string", "description": "购买人备注" },
+        "purchaserTel": { "type": "string", "description": "购机用户电话" },
+        "purchaserType": { "type": "string", "description": "购机用户类型" },
+        "remark": { "type": "string", "description": "备注" },
+        "sellDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "售出日期"
+        },
+        "serialNo": { "type": "string", "description": "出厂编号" },
+        "spec": { "type": "string", "description": "规格型号" },
+        "terminalExpiresIn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "终端到期时间"
+        },
+        "terminalModel": { "type": "string", "description": "终端型号" },
+        "terminalNo": { "type": "string", "description": "终端编号" },
+        "terminalSim": { "type": "string", "description": "终端sim卡号" },
+        "terminalType": { "type": "string", "description": "终端类型" },
+        "transmissionFactory": {
+          "type": "string",
+          "description": "变速器厂家"
+        },
+        "transmissionNo": { "type": "string", "description": "变速器编号" },
+        "tyre": { "type": "string", "description": "轮胎" },
+        "tyreNo": { "type": "string", "description": "购机用户姓名" },
+        "validTag": { "type": "string", "description": "有效标志" },
+        "vehicleComponentHeight": {
+          "type": "string",
+          "description": "机具高低"
+        },
+        "vehicleComponentName": { "type": "string", "description": "机具名称" },
+        "vehicleComponentNo": { "type": "string", "description": "机具识别码" },
+        "vehicleComponentTypeId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "机具类型名称"
+        },
+        "vehicleComponentTypeName": {
+          "type": "string",
+          "description": "机具类型名称"
+        },
+        "vehicleComponentWidth": {
+          "type": "string",
+          "description": "机具宽度"
+        },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "机型"
+        },
+        "vehicleWidth": {
+          "type": "number",
+          "format": "double",
+          "description": "车辆宽幅"
+        }
+      }
+    },
+    "Response«Dealer»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/Dealer",
+          "originalRef": "Dealer"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«Empty»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/Empty",
+          "originalRef": "Empty"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«Dealer»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«Dealer»",
+          "originalRef": "IPage«Dealer»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«Materia»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«Materia»",
+          "originalRef": "IPage«Materia»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«SPN»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«SPN»",
+          "originalRef": "IPage«SPN»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«SettlementPrice»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«SettlementPrice»",
+          "originalRef": "IPage«SettlementPrice»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«Terminal»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«Terminal»",
+          "originalRef": "IPage«Terminal»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«VehicleComponentType»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«VehicleComponentType»",
+          "originalRef": "IPage«VehicleComponentType»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«VehicleComponent»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«VehicleComponent»",
+          "originalRef": "IPage«VehicleComponent»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«VehicleFault»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«VehicleFault»",
+          "originalRef": "IPage«VehicleFault»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«VehicleType»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«VehicleType»",
+          "originalRef": "IPage«VehicleType»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«Vehicle»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«Vehicle»",
+          "originalRef": "IPage«Vehicle»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«IPage«WorkHours»»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/IPage«WorkHours»",
+          "originalRef": "IPage«WorkHours»"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«Materia»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/Materia",
+          "originalRef": "Materia"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«SettlementPrice»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/SettlementPrice",
+          "originalRef": "SettlementPrice"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«WorkHours»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": {
+          "description": "data",
+          "$ref": "#/definitions/WorkHours",
+          "originalRef": "WorkHours"
+        },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "Response«string»": {
+      "type": "object",
+      "required": ["code", "data", "message", "success"],
+      "properties": {
+        "code": { "type": "integer", "format": "int32", "description": "code" },
+        "data": { "type": "string", "description": "data" },
+        "message": { "type": "string", "description": "message" },
+        "success": { "type": "boolean", "description": "success" }
+      }
+    },
+    "RmsBody": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "permissions": { "type": "string" },
+        "remark": { "type": "string" }
+      }
+    },
+    "RmsSearchBody": {
+      "type": "object",
+      "properties": {
+        "keyword": { "type": "string" },
+        "page": { "type": "integer", "format": "int32" },
+        "size": { "type": "integer", "format": "int32" }
+      }
+    },
+    "SPN": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "description": "故障spn码" },
+        "desc": { "type": "string", "description": "故障描述" }
+      }
+    },
+    "SPNQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "description": "故障SPN码" },
+        "desc": { "type": "string", "description": "故障描述" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "SettlementPrice": {
+      "type": "object",
+      "properties": {
+        "activated": { "type": "boolean" },
+        "areaType": { "type": "integer", "format": "int32" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "integer", "format": "int64" },
+        "dealerId": { "type": "integer", "format": "int64" },
+        "dealerLevel": { "type": "integer", "format": "int32" },
+        "dealerLevelName": { "type": "string" },
+        "dealerName": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "id": { "type": "integer", "format": "int64" },
+        "mileageValue": { "type": "number", "format": "double" },
+        "remark": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "updatedBy": { "type": "integer", "format": "int64" },
+        "vehicleTypeId": { "type": "integer", "format": "int64" },
+        "vehicleTypeName": { "type": "string" },
+        "workHoursValue": { "type": "number", "format": "double" }
+      }
+    },
+    "SettlementPriceAddModel": {
+      "type": "object",
+      "properties": {
+        "areaType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "区域"
+        },
+        "dealerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "经销商ID"
+        },
+        "dealerLevel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商等级"
+        },
+        "mileageValue": {
+          "type": "number",
+          "format": "double",
+          "description": "里程标准"
+        },
+        "remark": { "type": "string", "description": "备注" },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "车型ID"
+        },
+        "workHoursValue": {
+          "type": "number",
+          "format": "double",
+          "description": "工时标准"
+        }
+      }
+    },
+    "SettlementPriceQueryModel": {
+      "type": "object",
+      "properties": {
+        "areaType": {
+          "type": "integer",
+          "format": "int32",
+          "description": "区域"
+        },
+        "dealerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "经销商ID"
+        },
+        "dealerLevel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商等级"
+        },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "车型ID"
+        }
+      }
+    },
+    "SettlementPriceUpdateModel": {
+      "type": "object",
+      "properties": {
+        "areaType": {
+          "type": "number",
+          "format": "double",
+          "description": "工时标准"
+        },
+        "dealerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "经销商ID"
+        },
+        "dealerLevel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "经销商等级"
+        },
+        "id": { "type": "integer", "format": "int64", "description": "id" },
+        "mileageValue": {
+          "type": "number",
+          "format": "double",
+          "description": "里程标准"
+        },
+        "remark": { "type": "string", "description": "备注" },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "车型ID"
+        }
+      }
+    },
+    "SmsBody": {
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string", "description": "手机号" },
+        "prefix": { "type": "string", "description": "国家代码" }
+      }
+    },
+    "SmsPasswordBody": {
+      "type": "object",
+      "properties": {
+        "captcha": { "type": "string", "description": "验证码" },
+        "newPassword": { "type": "string", "description": "新密码" },
+        "phone": { "type": "string", "description": "手机号" },
+        "rePassword": { "type": "string", "description": "重复新密码" }
+      }
+    },
+    "Terminal": {
+      "type": "object",
+      "properties": {
+        "bindStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "绑定状态"
+        },
+        "comment": { "type": "string", "description": "varchar(512)" },
+        "createAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "create_at"
+        },
+        "expiresIn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "到期时间"
+        },
+        "factory": { "type": "string", "description": "生产厂家" },
+        "model": { "type": "string", "description": "终端型号" },
+        "no": { "type": "string", "description": "终端编号" },
+        "protocol": {
+          "type": "string",
+          "description": "通信协议",
+          "enum": ["JTT808"]
+        },
+        "sim": { "type": "string", "description": "sim卡号" },
+        "type": {
+          "type": "string",
+          "description": "终端类型",
+          "enum": ["TBOX"]
+        },
+        "updateAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "update_at"
+        }
+      }
+    },
+    "TerminalQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "bindStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "绑定状态"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "到期时间结束时间"
+        },
+        "factory": { "type": "string", "description": "生产厂家" },
+        "model": {
+          "type": "string",
+          "description": "终端型号",
+          "enum": ["TBOX"]
+        },
+        "no": { "type": "string", "description": "终端编号" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "到期时间开始时间"
+        },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "UmsBody": {
+      "type": "object",
+      "properties": {
+        "avatar": { "type": "string" },
+        "dealerId": { "type": "integer", "format": "int64" },
+        "dealerName": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "organization": { "type": "string" },
+        "password": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "phonePrefix": { "type": "string" },
+        "remark": { "type": "string" },
+        "roleId": { "type": "integer", "format": "int64" },
+        "roleName": { "type": "string" },
+        "username": { "type": "string" }
+      }
+    },
+    "UmsSearchBody": {
+      "type": "object",
+      "properties": {
+        "endTime": { "type": "string", "format": "date" },
+        "name": { "type": "string" },
+        "page": { "type": "integer", "format": "int32" },
+        "phone": { "type": "string" },
+        "roleName": { "type": "string" },
+        "size": { "type": "integer", "format": "int32" },
+        "startTime": { "type": "string", "format": "date" },
+        "status": { "type": "integer", "format": "int32" },
+        "username": { "type": "string" }
+      }
+    },
+    "Vehicle": {
+      "type": "object",
+      "properties": {
+        "bindStatus": { "type": "boolean", "description": "绑定状态" },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "description": "生产日期"
+        },
+        "boughtAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "购买时间"
+        },
+        "buyerDealerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所属经销商"
+        },
+        "buyerId": { "type": "string", "description": "身份证号" },
+        "buyerName": { "type": "string", "description": "购机用户" },
+        "buyerPhone": { "type": "string", "description": "用户电话" },
+        "buyerPhonePrefix": {
+          "type": "integer",
+          "format": "int32",
+          "description": "号码国家前缀"
+        },
+        "engineModel": { "type": "string", "description": "发动机型号" },
+        "license": { "type": "string", "description": "车牌号" },
+        "name": { "type": "string", "description": "name" },
+        "no": { "type": "string", "description": "出厂编号" },
+        "power": { "type": "string", "description": "车辆功率" },
+        "sign": { "type": "string", "description": "有效标志" },
+        "terminalNo": { "type": "string", "description": "终端编号" },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "description": "车辆类型id"
+        },
+        "vin": { "type": "string", "description": "车架号" },
+        "wideWidth": { "type": "string", "description": "车辆宽幅" }
+      }
+    },
+    "VehicleComponent": {
+      "type": "object",
+      "properties": {
+        "comment": { "type": "string", "description": "varchar(512)" },
+        "height": { "type": "string", "description": "机具高度" },
+        "id": { "type": "string", "description": "机具识别码" },
+        "name": { "type": "string", "description": "机具名称" },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "description": "机具类型id"
+        },
+        "width": { "type": "string", "description": "机具高度" }
+      }
+    },
+    "VehicleComponentQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "机具识别码" },
+        "name": { "type": "string", "description": "机具名称" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "VehicleComponentType": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "该机具类型的极具数量"
+        },
+        "name": { "type": "string", "description": "机具类型名称" }
+      }
+    },
+    "VehicleFault": {
+      "type": "object",
+      "properties": {
+        "category": { "type": "string", "description": "类别" },
+        "comment": { "type": "string", "description": "备注" },
+        "component": { "type": "string", "description": "车辆部位" },
+        "desc": { "type": "string", "description": "故障描述" },
+        "id": { "type": "integer", "format": "int32", "description": "id" },
+        "type": { "type": "integer", "format": "int32", "description": "机型" }
+      }
+    },
+    "VehicleFaultQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "category": { "type": "string", "description": "类别" },
+        "comment": { "type": "string", "description": "备注" },
+        "component": { "type": "string", "description": "车辆部位" },
+        "desc": { "type": "string", "description": "故障描述" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "toPage": { "type": "integer", "format": "int32" },
+        "type": { "type": "integer", "format": "int32", "description": "机型" }
+      }
+    },
+    "VehicleQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "bindStatus": { "type": "boolean", "description": "绑定状态" },
+        "buyerDealerId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所属经销商"
+        },
+        "buyerId": { "type": "string", "description": "身份证号" },
+        "buyerName": { "type": "string", "description": "购机用户" },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "购机时间结束时间"
+        },
+        "engineModel": { "type": "string", "description": "发动机型号" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "购机时间开始时间"
+        },
+        "terminalNo": { "type": "string", "description": "终端编号" },
+        "toPage": { "type": "integer", "format": "int32" },
+        "vin": { "type": "string", "description": "车架号" }
+      }
+    },
+    "VehicleType": {
+      "type": "object",
+      "properties": {
+        "enable": { "type": "boolean", "description": "enable" },
+        "miniOfflineIcon": {
+          "type": "string",
+          "description": "mini_offline_icon"
+        },
+        "miniOnlineIcon": {
+          "type": "string",
+          "description": "mini_online_icon"
+        },
+        "name": { "type": "string", "description": "车辆类型名称" },
+        "offlineIcon": { "type": "string", "description": "offline_icon" },
+        "onlineIcon": { "type": "string", "description": "online_icon" },
+        "snapshot": { "type": "string", "description": "车型照片" }
+      }
+    },
+    "VehicleTypeQueryPageRequestBody": {
+      "type": "object",
+      "properties": {
+        "pageSize": { "type": "integer", "format": "int32" },
+        "toPage": { "type": "integer", "format": "int32" }
+      }
+    },
+    "WorkHours": {
+      "type": "object",
+      "properties": {
+        "activated": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "integer", "format": "int64" },
+        "description": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "id": { "type": "integer", "format": "int64" },
+        "num": { "type": "number", "format": "double" },
+        "parts": { "type": "string" },
+        "remark": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "updatedBy": { "type": "integer", "format": "int64" },
+        "vehicleTypeId": { "type": "integer", "format": "int64" },
+        "vehicleTypeName": { "type": "string" }
+      }
+    },
+    "WorkHoursAddModel": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string", "description": "工时描述" },
+        "num": {
+          "type": "number",
+          "format": "double",
+          "description": "工时数量"
+        },
+        "parts": { "type": "string", "description": "部位" },
+        "remark": { "type": "string", "description": "备注" },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "机型"
+        }
+      }
+    },
+    "WorkHoursQueryModel": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string", "description": "工时描述" },
+        "pageSize": { "type": "integer", "format": "int32" },
+        "parts": { "type": "string", "description": "部位" },
+        "toPage": { "type": "integer", "format": "int32" },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "机型"
+        }
+      }
+    },
+    "WorkHoursUpdateModel": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string", "description": "工时描述" },
+        "id": { "type": "integer", "format": "int64", "description": "id" },
+        "num": {
+          "type": "number",
+          "format": "double",
+          "description": "工时数量"
+        },
+        "parts": { "type": "string", "description": "部位" },
+        "remark": { "type": "string", "description": "备注" },
+        "vehicleTypeId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "机型"
+        }
+      }
+    }
+  }
+}
