@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import prettier from 'prettier';
-
+import fetch from 'node-fetch';
 import {
   ApiConfig,
   PathGroup,
@@ -129,9 +129,15 @@ function modelNameTranslate(name: string) {
 
 (async () => {
   const sourceUrl = process.argv[2];
+  let buff = '';
+  if (sourceUrl.includes('http://') || sourceUrl.includes('https://')) {
+    buff = await fetch(sourceUrl).then((r) => r.text());
+  } else {
+    buff = readFileSync(sourceUrl).toString();
+  }
   const output = process.argv[3] || 'output.ts';
 
-  const source: ApiConfig = JSON.parse(readFileSync(sourceUrl).toString());
+  const source: ApiConfig = JSON.parse(buff);
   const paths = Object.keys(source.paths);
 
   const store: any = {};
