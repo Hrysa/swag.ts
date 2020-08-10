@@ -7,3 +7,4 @@ jest.config.js
 .nyc_output
 tsconfig.json
 coverage
+output

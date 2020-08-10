@@ -40,6 +40,15 @@ const pathToInterfaceName = (path: string) =>
     .map((v) => v.replace(/-/g, ''))
     .join('');
 
+const parseComment = (def: any) => {
+  const list = [
+    ...(def?.summary || '').split('\n'),
+    ...(def?.description || '').split('\n'),
+  ].filter(Boolean);
+  if (list.length) return `\n/**\n * ${list.join('\n * ')}\n*/\n`;
+  return '';
+};
+
 function parseStore(store: any): any {
   return Object.keys(store)
     .map((v) => {
@@ -56,7 +65,7 @@ function parseStore(store: any): any {
           const { query, body } = opt.req;
           if (query) {
             const name = pathToInterfaceName(opt.path) + firstUp(opt.method);
-            interfaces.push(`/** query */\ninterface ${name} ${query}`);
+            interfaces.push(`/** query */\n export interface ${name} ${query}`);
             req.push(`query:${name}`);
             innerReq.push('query');
           }
@@ -65,19 +74,22 @@ function parseStore(store: any): any {
             innerReq.push('body');
           }
         }
+        req.push('options?: any');
+        innerReq.push('options');
 
-        if (opt.desc) desc = '\n/**\n' + opt.desc.replace(/^/g, '* ') + '\n*/';
+        if (opt.desc) desc = opt.desc;
         if (opt.res) res = `:Promise<${opt.res}>`;
 
-        return `${desc}
-export const ${name} = (${req.join(',')})${res} =>{ return $${opt.method}('${
+        return `${desc}export const ${name} = (${req.join(
+          ',',
+        )})${res} =>{ return $${opt.method}('${
           opt.path
         }', {${innerReq.join()}}) as any; }`;
       }
 
       return `export namespace ${name} {\n${parseStore(store[v])}\n}\n`;
     })
-    .join('');
+    .join('\n');
 }
 
 function parseParameters(obj: OpenAPI2SchemaObject[]) {
@@ -170,7 +182,7 @@ function modelNameTranslate(name: string) {
           }
 
           return {
-            desc: def?.description,
+            desc: parseComment(def),
             allOptional: false, // TODO: def?.parameters.filter((v) => v.required).length === 0,
             req: parseParameters(def?.parameters!),
             res,
@@ -186,14 +198,23 @@ function modelNameTranslate(name: string) {
   interfaces.push(
     ...Object.keys(source.definitions).map((v) => {
       const def = source.definitions[v];
+      const required = def.required ? def.required : [];
       const pros = def.properties
         ? Object.keys(def.properties)
             .map(
               (v) =>
-                `\n/** ${
-                  def.properties[v].description || ''
-                } */\n${v}: ${(() => {
+                `${parseComment(def.properties[v])}${v}${
+                  required.includes(v) ? '' : '?'
+                }: ${(() => {
                   if (def.properties[v].type !== 'array') {
+                    if (
+                      def.properties[v].type === 'string' &&
+                      def.properties[v].enum
+                    ) {
+                      return def.properties[v].enum
+                        .map((o: any) => `'${o}'`)
+                        .join('|');
+                    }
                     return (
                       def.properties[v].type ||
                       modelNameTranslate(def.properties[v].$ref) ||
@@ -211,15 +232,10 @@ function modelNameTranslate(name: string) {
             )
             .join(';')
         : '';
-      const desc =
-        (def.description &&
-          '/**\n*' + def.description.split('\n').join('\n *') + '\n */\n') ||
-        '';
-      return `${desc}interface ${modelNameTranslate(v)} {${pros}}`;
+      const comment = parseComment(def);
+      return `${comment}export interface ${modelNameTranslate(v)} {${pros}}`;
     }),
   );
-
-  // console.log({ paths, store, output, interfaces });
 
   // Prettify output
   let prettierOptions: prettier.Options = { parser: 'typescript' };
@@ -240,10 +256,6 @@ function modelNameTranslate(name: string) {
     prettier.format(
       `/* eslint-disable */
 import {$get, $post, $delete, $put} from './adapter';
-
-interface A {}
-interface B {}
-
 
 type array = Array<any>;
 type binary = any;

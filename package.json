@@ -1,6 +1,6 @@
 {
   "name": "swag.ts",
-  "version": "0.0.4",
+  "version": "0.0.11",
   "bin": {
     "swag2ts": "dist/index.js"
   },
@@ -18,18 +18,16 @@
     "@typescript-eslint/parser": "^2.29.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
-    "jest": "^25.4.0",
     "lint-staged": "^10.2.0",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "prettier": "^2.0.5",
+    "prettier": "^1.18.2",
     "ts-node": "^8.10.2"
   },
   "scripts": {
-    "test": "jest --coverage",
     "build": "rm -rf dist && tsc",
     "pub": "yarn build && yarn publish",
     "start": "ts-node src",
@@ -47,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && yarn lint"
+      "pre-commit": "yarn lint"
     }
   }
 }

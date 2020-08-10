@@ -17,6 +17,7 @@ export interface Path {
   description: string;
   responses: ResponseGroup;
   requestBody: any; // TODO:
+  [K: string]: any;
 }
 
 export interface Parameter {
