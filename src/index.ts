@@ -135,8 +135,9 @@ function modelNameTranslate(name: string) {
     .replace('#/definitions/', '')
     .replace(/«/g, '$')
     .replace(/»/g, '')
-    .replace(/\[/g, '<')
-    .replace(/]/g, '>');
+    .replace(/\[/g, '$')
+    .replace(',', '_')
+    .replace(/]/g, '');
 }
 
 (async () => {
@@ -237,6 +238,17 @@ function modelNameTranslate(name: string) {
             .join(';')
         : '';
       const comment = parseComment(def);
+
+      /**
+       * support for C# Tuple
+       */
+      if (v.indexOf('Tuple') === 0) {
+        return `${comment} export type ${modelNameTranslate(v)} = [${pros
+          .split(';')
+          .map((v) => v.split(':')[1])
+          .join(',')}]`;
+      }
+
       return `${comment}export interface ${modelNameTranslate(v)} {${pros}}`;
     }),
   );
