@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-unused-vars */
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 import prettier from 'prettier';
 import fetch from 'node-fetch';
@@ -10,6 +10,7 @@ import {
   OpenAPI2Type,
   OpenAPI2SchemaObject,
 } from './swagger';
+
 const types: OpenAPI2Type[] = [
   'array',
   'binary',
@@ -31,14 +32,13 @@ const interfaces: any[] = [];
 
 const firstUp = (v: string) => v.substring(0, 1).toUpperCase() + v.substring(1);
 
-const pathToInterfaceName = (path: string) =>
+const path2nodes = (path: string) =>
   path
     .split('/')
     .map(firstUp)
     .filter(Boolean)
     .map((v) => (v[0] === '{' ? '$' : v))
-    .map((v) => v.replace(/-/g, ''))
-    .join('');
+    .map((v) => v.replace(/-/g, ''));
 
 const parseComment = (def: any) => {
   const list = [
@@ -64,7 +64,7 @@ function parseStore(store: any): any {
         if (opt.req) {
           const { query, body } = opt.req;
           if (query) {
-            const name = pathToInterfaceName(opt.path) + firstUp(opt.method);
+            const name = path2nodes(opt.path).join('') + firstUp(opt.method);
             interfaces.push(`/** query */\n export interface ${name} ${query}`);
             req.push(`query:${name}`);
             innerReq.push('query');
@@ -147,7 +147,8 @@ function modelNameTranslate(name: string) {
   } else {
     buff = readFileSync(sourceUrl).toString();
   }
-  const output = process.argv[3] || 'output.ts';
+
+  const output = process.argv[3] || 'output';
 
   const source: ApiConfig = JSON.parse(buff);
   const paths = Object.keys(source.paths);
@@ -155,16 +156,13 @@ function modelNameTranslate(name: string) {
   const store: any = {};
 
   paths.forEach((path) => {
-    const nodes = path
-      .split('/')
-      .filter(Boolean)
-      .map((v) => (v[0] === '{' ? '$' : v))
-      .map((v) => v.replace(/-/g, ''));
+    const nodes = path2nodes(path);
     const fn = nodes.pop()!;
     const fnParent = nodes.reduce((p, c) => (p[c] = p[c] || {}), store);
-
     const fnDef = source.paths[path];
+
     fnParent[fn] = fnParent[fn] || {};
+
     Object.keys(fnDef).forEach(
       (method) =>
         (fnParent[fn][method] = () => {
@@ -177,13 +175,19 @@ function modelNameTranslate(name: string) {
                 res = modelNameTranslate(resDef.schema.$ref);
               } else if (resDef.schema.type) {
                 res = resDef.schema.type;
+                if (resDef.schema.type === 'array') {
+                  let innerType = 'any';
+                  if (resDef.schema.items?.$ref) {
+                    innerType = modelNameTranslate(resDef.schema.items?.$ref);
+                  }
+                  res = `Array<${innerType}>`;
+                }
               }
             }
           }
 
           return {
             desc: parseComment(def),
-            allOptional: false, // TODO: def?.parameters.filter((v) => v.required).length === 0,
             req: parseParameters(def?.parameters!),
             res,
             path,
@@ -249,6 +253,10 @@ function modelNameTranslate(name: string) {
     };
   } catch (err) {
     console.error(`❌ ${err}`);
+  }
+
+  if (!existsSync(output)) {
+    mkdirSync(output);
   }
 
   writeFileSync(
