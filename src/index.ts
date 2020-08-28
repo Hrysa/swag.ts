@@ -37,7 +37,7 @@ const path2nodes = (path: string) =>
     .split('/')
     .map(firstUp)
     .filter(Boolean)
-    .map((v) => (v[0] === '{' ? '$' : v))
+    .map((v) => v.replace('{', '$').replace('}', ''))
     .map((v) => v.replace(/-/g, ''));
 
 const parseComment = (def: any) => {
@@ -63,8 +63,22 @@ function parseStore(store: any): any {
 
         if (opt.req) {
           const { query, body } = opt.req;
+          const pathNodes = path2nodes(opt.path);
+
+          // path params
+          const pathParams = pathNodes.filter((v) => v[0] === '$');
+          if (pathParams.length > 0) {
+            req.push(
+              `{${pathParams
+                .map((v) => v.slice(1))
+                .join(',')}} : {${pathParams
+                .map((v) => v.slice(1) + ': string')
+                .join(',')}}`,
+            );
+          }
+
           if (query) {
-            const name = path2nodes(opt.path).join('') + firstUp(opt.method);
+            const name = pathNodes.join('') + firstUp(opt.method);
             interfaces.push(`/** query */\n export interface ${name} ${query}`);
             req.push(`query:${name}`);
             innerReq.push('query');
@@ -82,9 +96,10 @@ function parseStore(store: any): any {
 
         return `${desc}export const ${name} = (${req.join(
           ',',
-        )})${res} =>{ return $${opt.method}('${
-          opt.path
-        }', {${innerReq.join()}}) as any; }`;
+        )})${res} =>{ return $${opt.method}(\`${opt.path.replace(
+          /\{/,
+          '${',
+        )}\`, {${innerReq.join()}}) as any; }`;
       }
 
       return `export namespace ${name} {\n${parseStore(store[v])}\n}\n`;
