@@ -68,13 +68,9 @@ function parseStore(store: any): any {
           // path params
           const pathParams = pathNodes.filter((v) => v[0] === '$');
           if (pathParams.length > 0) {
-            req.push(
-              `{${pathParams
-                .map((v) => v.slice(1))
-                .join(',')}} : {${pathParams
-                .map((v) => v.slice(1) + ': string')
-                .join(',')}}`,
-            );
+            const fields = pathParams.map((v) => v.slice(1)).join(',');
+            const types = pathParams.map((v) => v.slice(1) + ':any').join(',');
+            req.push(`{${fields}} : {${types}}`);
           }
 
           if (query) {
