@@ -35,18 +35,15 @@ const firstUp = (v: string) => v.substring(0, 1).toUpperCase() + v.substring(1);
 const path2nodes = (path: string) =>
   path
     .split('/')
-    .map(firstUp)
     .filter(Boolean)
-    .map((v) => v.replace('{', '$').replace('}', ''))
-    .map((v) => v.replace(/-/g, ''));
+    .map(firstUp)
+    .map((v) => v.replace('{', '$').replace(/\}|-/g, ''));
 
 const parseComment = (def: any) => {
-  const list = [
-    ...(def?.summary || '').split('\n'),
-    ...(def?.description || '').split('\n'),
-  ].filter(Boolean);
-  if (list.length) return `\n/**\n * ${list.join('\n * ')}\n*/\n`;
-  return '';
+  const summary: string = def?.summary || '';
+  const description: string = def?.description || '';
+  const lines = summary.split('\n').concat(description.split('\n'));
+  return lines.length ? `\n/**\n * ${lines.join('\n * ')}\n*/\n` : '';
 };
 
 function parseStore(store: any): any {
@@ -79,6 +76,7 @@ function parseStore(store: any): any {
             req.push(`query:${name}`);
             innerReq.push('query');
           }
+
           if (body) {
             req.push(`body:${body}`);
             innerReq.push('body');
@@ -90,12 +88,13 @@ function parseStore(store: any): any {
         if (opt.desc) desc = opt.desc;
         if (opt.res) res = `:Promise<${opt.res}>`;
 
-        return `${desc}export const ${name} = (${req.join(
-          ',',
-        )})${res} =>{ return $${opt.method}(\`${opt.path.replace(
-          /\{/,
-          '${',
-        )}\`, {${innerReq.join()}}) as any; }`;
+        const params = req.join();
+        const iParams = innerReq.join();
+        opt.path = opt.path.replace(/\{/, '${');
+
+        return `${desc}export const ${name} = (${params}) ${res} => { 
+          return $${opt.method}(\`${opt.path}\`, {${iParams}}) as any; 
+        }`;
       }
 
       return `export namespace ${name} {\n${parseStore(store[v])}\n}\n`;
@@ -103,6 +102,10 @@ function parseStore(store: any): any {
     .join('\n');
 }
 
+/**
+ * ignore parameters in header, formData
+ * path variables will handled in `parseStore()`
+ */
 function parseParameters(obj: OpenAPI2SchemaObject[]) {
   if (!obj) return;
   const res = { query: {} as any, body: '' as any };
@@ -112,10 +115,10 @@ function parseParameters(obj: OpenAPI2SchemaObject[]) {
       const { name, val } = parseParameter(o);
       res.query[name] = val;
     }
+
     if (o.in === 'body') {
       res.body = parseParameter(o.schema).val;
     }
-    // TODO: all method
   });
   const query = Object.keys(res.query)
     .map((v) => `${v}:${res.query[v]}`)
