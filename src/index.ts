@@ -253,16 +253,6 @@ function modelNameTranslate(name: string) {
         : '';
       const comment = parseComment(def);
 
-      /**
-       * support for C# Tuple
-       */
-      if (v.indexOf('Tuple') === 0) {
-        return `${comment} export type ${modelNameTranslate(v)} = [${pros
-          .split(';')
-          .map((v) => v.split(':')[1])
-          .join(',')}]`;
-      }
-
       return `${comment}export interface ${modelNameTranslate(v)} {${pros}}`;
     }),
   );
