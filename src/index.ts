@@ -113,6 +113,13 @@ function parseParameters(obj: OpenAPI2SchemaObject[]) {
   obj.forEach((o) => {
     if (o.in === 'query') {
       const { name, val } = parseParameter(o);
+
+      // FIXME: swagger parse array model in different way that can get correct parameter name
+      // ignore this invalid name
+      if (/\.|\[|\]/.test(name)) {
+        return;
+      }
+
       res.query[name] = val;
     }
 
