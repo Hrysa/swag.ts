@@ -319,17 +319,31 @@ type password = string;
   if (!existsSync(adapter)) {
     writeFileSync(
       adapter,
-      `// eslint-disable-next-line
-export function $get<T>(url: string, data?: any) {}
+      `interface Data {
+  query?: any;
+  body?: any;
+  options?: any;
+}
+// eslint-disable-next-line
+export function $get(url: string, data?: Data) {}
 
 // eslint-disable-next-line
-export function $post<T>(url: string, data?: any) {}
+export function $post(url: string, data?: Data) {}
 
 // eslint-disable-next-line
-export function $put<T>(url: string, data?: any) {}
+export function $put(url: string, data?: Data) {}
 
 // eslint-disable-next-line
-export function $delete<T>(url: string, data?: any) {}
+export function $delete(url: string, data?: Data) {}
+
+// eslint-disable-next-line
+export function $options(url: string, data?: Data) {}
+
+// eslint-disable-next-line
+export function $head(url: string, data?: Data) {}
+
+// eslint-disable-next-line
+export function $patch(url: string, data?: Data) {}
 `,
     );
   }
