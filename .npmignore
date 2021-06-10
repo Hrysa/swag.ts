@@ -8,3 +8,4 @@ jest.config.js
 tsconfig.json
 coverage
 output
+swagger.json
