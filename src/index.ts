@@ -30,7 +30,15 @@ const types: OpenAPI2Type[] = [
 
 const interfaces: any[] = [];
 
-const firstUp = (v: string) => v.substring(0, 1).toUpperCase() + v.substring(1);
+const firstUp = (v: string) => {
+  let first = v.substring(0, 1).toUpperCase();
+
+  if (/[0-9]/.test(first)) {
+    first = '_' + first;
+  }
+
+  return first + v.substring(1);
+};
 
 const path2nodes = (path: string) =>
   path
@@ -93,7 +101,7 @@ function parseStore(store: any): any {
         opt.path = opt.path.replace(/\{/, '${');
 
         return `${desc}export const ${name} = (${params}) ${res} => { 
-          return $${opt.method}(\`${opt.path}\`, {${iParams}}) as any; 
+          return _.$${opt.method}(\`${opt.path}\`, {${iParams}}) as any; 
         }`;
       }
 
@@ -286,7 +294,7 @@ function modelNameTranslate(name: string) {
     resolve(output, 'api.ts'),
     prettier.format(
       `/* eslint-disable */
-import {$get, $post, $delete, $put} from './adapter';
+import * as _ from './adapter';
 
 type array = Array<any>;
 type binary = any;
